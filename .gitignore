@@ -1,0 +1,80 @@
+# ==========================================
+# Android / Kotlin / Jetpack Compose Project
+# ==========================================
+
+# Gradle build output
+/build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Gradle cache & logs
+.gradle/
+.gradle-cache/
+.gradle-local/
+
+# Local configuration
+local.properties
+*.iml
+
+# IntelliJ / Android Studio
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/caches/
+.idea/**/shelf/
+.idea/**/modules.xml
+.idea/**/navEditor.xml
+.idea/**/assetWizardSettings.xml
+.idea/**/misc.xml
+
+# Kotlin compile caches
+out/
+kotlinc/
+
+# Logs
+*.log
+*.log.*
+
+# Keystore files (DO NOT COMMIT YOUR SIGNING KEYS)
+*.jks
+*.keystore
+key.properties
+
+# Android generated files
+captures/
+.externalNativeBuild/
+.cxx/
+obj/
+
+# Device / Emulator files
+*.apk
+*.ap_
+*.aab
+
+# Generated JSONs and reports
+reports/
+*.hprof
+*.json
+*.xml
+
+# Firebase / Google Services
+google-services.json
+fabric.properties
+crashlytics-build.properties
+
+# Unit test and coverage reports
+*.ec
+test-results/
+coverage/
+jacoco/
+*.exec
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+.vscode/
+.idea_modules/
