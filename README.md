@@ -1,12 +1,9 @@
-:
+# 📈 StockApp
 
-📈 StockApp
-
-StockApp is a simple Android application that displays real-time market summaries using the Yahoo Finance API
-.
+StockApp is a simple Android application that displays real-time market summaries using the Yahoo Finance API.
 The app demonstrates clean architecture, modern Android development practices, and MVVM with Jetpack Compose for UI.
 
-🚀 Features
+## 🚀 Features
 
 View latest market summary and stock information
 
@@ -18,43 +15,19 @@ Detail view for selected stocks
 
 Built using clean architecture principles
 
-🧠 Architecture
+## 🧠 Architecture
 
 This project follows Clean Architecture and MVVM, ensuring a clear separation of concerns:
 
-── stockapp/
-├── data/
-│   ├── model/
-│   ├── network/
-│   └── repository/
-├── domain/
-│   ├── model/
-│   ├── repository/
-│   └── usecase/
-├── presentation/
-│   ├── list/
-│   ├── detail/
-│   └── components/
-├── di/
-└── utils/
+<img width="227" height="376" alt="Screenshot 2025-10-17 at 02 02 59" src="https://github.com/user-attachments/assets/576daaa7-4461-4e40-a8d6-07623ef6809a" />
 
 🛠️ Tech Stack
 
-Kotlin
-
-Jetpack Compose
-
-Coroutines & Flow
-
-MVVM
-
-Hilt (DI)
-
-JUnit + MockK (Testing)
+Kotlin | Jetpack Compose | Coroutines & Flow | MVVM | Hilt (DI) | JUnit + MockK (Testing)
 
 Clean Architecture
 
-🔑 Getting Started
+## 🔑 Getting Started
 1️⃣ Get API Token
 
 To use the Yahoo Finance API, you’ll need a RapidAPI key:
@@ -74,7 +47,7 @@ RAPIDAPI_KEY=your_api_key_here
 
 This key will be used by the app to authenticate requests.
 
-🧪 Testing
+## 🧪 Testing
 
 Run unit tests with:
 
