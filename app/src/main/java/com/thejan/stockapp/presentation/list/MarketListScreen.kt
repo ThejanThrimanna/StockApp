@@ -30,10 +30,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.thejan.stockapp.data.model.MarketSummaryItem
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
+import com.thejan.stockapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -61,7 +63,7 @@ fun MarketListScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Market") },
+                title = { Text(stringResource(id = R.string.market_list_title)) },
                 actions = {
                     val isRefreshing = uiState.isLoading && uiState.stocks.isNotEmpty()
                     if (isRefreshing) {
@@ -71,7 +73,10 @@ fun MarketListScreen(
                         )
                     } else {
                         IconButton(onClick = { viewModel.onEvent(MarketListEvent.Refresh) }) {
-                            Icon(Icons.Default.Refresh, "Refresh")
+                            Icon(
+                                Icons.Default.Refresh,
+                                stringResource(R.string.market_list_button_refresh_description)
+                            )
                         }
                     }
                 }
@@ -93,7 +98,7 @@ fun MarketListScreen(
                             )
                         )
                     },
-                    label = { Text("Search stocks") },
+                    label = { Text(stringResource(R.string.market_list_search_placeholder)) },
                     modifier = modifier.fillMaxWidth()
                 )
 
@@ -121,7 +126,7 @@ private fun MarketListContent(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     CircularProgressIndicator()
                     Spacer(Modifier.height(8.dp))
-                    Text("Loading market data...")
+                    Text(stringResource(R.string.market_list_message_loading))
                 }
             }
         }
@@ -130,7 +135,7 @@ private fun MarketListContent(
             Box(Modifier.fillMaxSize(), Alignment.Center) {
                 Text(
                     if (uiState.searchQuery.isNotBlank()) "No matching stocks found"
-                    else "No market data available"
+                    else stringResource(R.string.market_list_message_empty)
                 )
             }
         }

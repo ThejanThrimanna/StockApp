@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">StockApp</string>
+    <string name="loading">Loading…</string>
+
+    <!-- Market List Screen -->
+    <string name="market_list_title">Market</string>
+    <string name="market_list_search_placeholder">Search stocks</string>
+    <string name="market_list_button_refresh_description">Refresh</string>
+    <string name="market_list_message_no_results">No matching stocks found</string>
+    <string name="market_list_error_loading">Error loading stocks</string>
+    <string name="market_list_message_loading">Loading market data…</string>
+    <string name="market_list_message_empty">No market data available</string>
+
+    <!-- Market Detail Screen -->
+    <string name="market_detail_title">Profile</string>
+    <string name="market_detail_button_back_description">Back</string>
+    <string name="market_detail_message_loading">Loading profile details…</string>
+    <string name="market_detail_label_address">Address</string>
+    <string name="market_detail_label_phone">Phone</string>
+    <string name="market_detail_label_website">Website</string>
+    <string name="market_detail_label_sector">Sector</string>
+    <string name="market_detail_label_industry">Industry</string>
+    <string name="market_detail_label_employees">Employees</string>
+    <string name="market_detail_label_description">Description</string>
+</resources>

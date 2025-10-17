@@ -56,8 +56,6 @@ obj/
 # Generated JSONs and reports
 reports/
 *.hprof
-*.json
-*.xml
 
 # Firebase / Google Services
 google-services.json

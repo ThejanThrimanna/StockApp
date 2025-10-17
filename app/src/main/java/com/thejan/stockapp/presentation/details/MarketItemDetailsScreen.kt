@@ -25,10 +25,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.thejan.stockapp.data.model.SummaryProfile
+import com.thejan.stockapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,12 +49,12 @@ fun MarketDetailScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Profile") },
+                title = { Text(stringResource(R.string.market_detail_title)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.market_detail_button_back_description)
                         )
                     }
                 },
@@ -82,7 +84,7 @@ fun MarketDetailScreen(
                     ) {
                         CircularProgressIndicator()
                         Spacer(Modifier.height(8.dp))
-                        Text("Loading profile details...")
+                        Text(stringResource(R.string.market_detail_message_loading))
                     }
                 }
 
@@ -117,7 +119,7 @@ fun MarketDetailScreen(
 fun SummaryProfileSection(profile: SummaryProfile) {
     Column(modifier = Modifier.fillMaxWidth()) {
         InfoItem(
-            "Address", listOfNotNull(
+            stringResource(R.string.market_detail_label_address), listOfNotNull(
                 profile.address1,
                 profile.address2,
                 profile.city,
@@ -125,13 +127,16 @@ fun SummaryProfileSection(profile: SummaryProfile) {
             ).joinToString(", ")
         )
 
-        InfoItem("Phone", profile.phone)
-        InfoItem("Website", profile.website)
-        InfoItem("Sector", profile.sectorDisp)
-        InfoItem("Industry", profile.industryDisp)
-        InfoItem("Employees", profile.fullTimeEmployees?.toString())
+        InfoItem(stringResource(R.string.market_detail_label_phone), profile.phone)
+        InfoItem(stringResource(R.string.market_detail_label_website), profile.website)
+        InfoItem(stringResource(R.string.market_detail_label_sector), profile.sectorDisp)
+        InfoItem(stringResource(R.string.market_detail_label_industry), profile.industryDisp)
         InfoItem(
-            "Description",
+            stringResource(R.string.market_detail_label_employees),
+            profile.fullTimeEmployees?.toString()
+        )
+        InfoItem(
+            stringResource(R.string.market_detail_label_description),
             profile.longBusinessSummary ?: profile.description,
             multiline = true
         )
