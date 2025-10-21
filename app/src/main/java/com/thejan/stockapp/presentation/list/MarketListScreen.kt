@@ -29,6 +29,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -116,7 +117,7 @@ fun MarketListScreen(
 }
 
 @Composable
-private fun MarketListContent(
+fun MarketListContent(
     uiState: MarketListUiState,
     onStockClick: (symbol: String) -> Unit
 ) {
@@ -155,6 +156,7 @@ private fun MarketListContent(
     }
 }
 
+
 @Composable
 fun MarketListItem(
     stock: MarketSummaryItem,
@@ -169,8 +171,284 @@ fun MarketListItem(
     ) {
         Column(Modifier.padding(16.dp)) {
             Text(stock.shortName, style = MaterialTheme.typography.titleMedium)
-            Text(stock.symbol, style = MaterialTheme.typography.bodyMedium)
+            Text(stock.symbol, style = MaterialTheme.typography.bodyMedium, color = Color.Red)
             Text(stock.regularMarketPrice.fmt, Modifier.padding(top = 4.dp))
         }
     }
 }
+
+/*
+
+// Preview provider for MarketSummaryItem
+class MarketSummaryItemProvider : PreviewParameterProvider<MarketSummaryItem> {
+    override val values: Sequence<MarketSummaryItem>
+        get() = sequenceOf(
+            MarketSummaryItem(
+                symbol = "AAPL",
+                shortName = "Apple Inc.",
+                regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                fullExchangeName = "NasdaqGS",
+                exchangeTimezoneName = "America/New_York",
+                exchange = "NMS"
+            ),
+            MarketSummaryItem(
+                symbol = "GOOGL",
+                shortName = "Alphabet Inc.",
+                regularMarketPrice = RegularMarketValue(2750.30, "2,750.30"),
+                regularMarketChange = RegularMarketValue(45.20, "+45.20"),
+                regularMarketChangePercent = RegularMarketValue(1.67, "+1.67%"),
+                regularMarketPreviousClose = RegularMarketValue(2705.10, "2,705.10"),
+                fullExchangeName = "NasdaqGS",
+                exchangeTimezoneName = "America/New_York",
+                exchange = "NMS"
+            ),
+            MarketSummaryItem(
+                symbol = "TSLA",
+                shortName = "Tesla Inc.",
+                regularMarketPrice = RegularMarketValue(850.75, "850.75"),
+                regularMarketChange = RegularMarketValue(-15.25, "-15.25"),
+                regularMarketChangePercent = RegularMarketValue(-1.76, "-1.76%"),
+                regularMarketPreviousClose = RegularMarketValue(866.00, "866.00"),
+                fullExchangeName = "NasdaqGS",
+                exchangeTimezoneName = "America/New_York",
+                exchange = "NMS"
+            )
+        )
+}
+
+// ADD THE MISSING PROVIDER - Preview provider for MarketListUiState
+class MarketListUiStateProvider : PreviewParameterProvider<MarketListUiState> {
+    override val values: Sequence<MarketListUiState>
+        get() = sequenceOf(
+            MarketListUiState(
+                stocks = listOf(
+                    MarketSummaryItem(
+                        symbol = "AAPL",
+                        shortName = "Apple Inc.",
+                        regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                        regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                        regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                        regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    ),
+                    MarketSummaryItem(
+                        symbol = "GOOGL",
+                        shortName = "Alphabet Inc.",
+                        regularMarketPrice = RegularMarketValue(2750.30, "2,750.30"),
+                        regularMarketChange = RegularMarketValue(45.20, "+45.20"),
+                        regularMarketChangePercent = RegularMarketValue(1.67, "+1.67%"),
+                        regularMarketPreviousClose = RegularMarketValue(2705.10, "2,705.10"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    )
+                ),
+                isLoading = false,
+                searchQuery = ""
+            ),
+            MarketListUiState(
+                stocks = emptyList(),
+                isLoading = true,
+                searchQuery = ""
+            ),
+            MarketListUiState(
+                stocks = emptyList(),
+                isLoading = false,
+                searchQuery = "test"
+            ),
+            MarketListUiState(
+                stocks = listOf(
+                    MarketSummaryItem(
+                        symbol = "AAPL",
+                        shortName = "Apple Inc.",
+                        regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                        regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                        regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                        regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    )
+                ),
+                isLoading = true,
+                searchQuery = ""
+            )
+        )
+}
+
+// Individual MarketListItem previews
+@Preview(showBackground = true)
+@Composable
+fun MarketListItemPreview() {
+    MaterialTheme {
+        MarketListItem(
+            stock = MarketSummaryItem(
+                symbol = "AAPL",
+                shortName = "Apple Inc.",
+                regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                fullExchangeName = "NasdaqGS",
+                exchangeTimezoneName = "America/New_York",
+                exchange = "NMS"
+            ),
+            onClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarketListItemParameterizedPreview(
+    @PreviewParameter(MarketSummaryItemProvider::class) stock: MarketSummaryItem
+) {
+    MaterialTheme {
+        MarketListItem(
+            stock = stock,
+            onClick = {}
+        )
+    }
+}
+
+// MarketListContent previews using MarketListUiStateProvider
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentParameterizedPreview(
+    @PreviewParameter(MarketListUiStateProvider::class) uiState: MarketListUiState
+) {
+    MaterialTheme {
+        MarketListContent(
+            uiState = uiState,
+            onStockClick = {}
+        )
+    }
+}
+
+// Specific scenario previews
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentPreview_Loading() {
+    MaterialTheme {
+        MarketListContent(
+            uiState = MarketListUiState(
+                stocks = emptyList(),
+                isLoading = true,
+                searchQuery = ""
+            ),
+            onStockClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentPreview_Empty() {
+    MaterialTheme {
+        MarketListContent(
+            uiState = MarketListUiState(
+                stocks = emptyList(),
+                isLoading = false,
+                searchQuery = ""
+            ),
+            onStockClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentPreview_WithStocks() {
+    MaterialTheme {
+        MarketListContent(
+            uiState = MarketListUiState(
+                stocks = listOf(
+                    MarketSummaryItem(
+                        symbol = "AAPL",
+                        shortName = "Apple Inc.",
+                        regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                        regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                        regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                        regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    ),
+                    MarketSummaryItem(
+                        symbol = "GOOGL",
+                        shortName = "Alphabet Inc.",
+                        regularMarketPrice = RegularMarketValue(2750.30, "2,750.30"),
+                        regularMarketChange = RegularMarketValue(45.20, "+45.20"),
+                        regularMarketChangePercent = RegularMarketValue(1.67, "+1.67%"),
+                        regularMarketPreviousClose = RegularMarketValue(2705.10, "2,705.10"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    )
+                ),
+                isLoading = false,
+                searchQuery = ""
+            ),
+            onStockClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentPreview_SearchResults() {
+    MaterialTheme {
+        MarketListContent(
+            uiState = MarketListUiState(
+                stocks = listOf(
+                    MarketSummaryItem(
+                        symbol = "AAPL",
+                        shortName = "Apple Inc.",
+                        regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                        regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                        regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                        regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    )
+                ),
+                isLoading = false,
+                searchQuery = "app"
+            ),
+            onStockClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarketListContentPreview_Refreshing() {
+    MaterialTheme {
+        MarketListContent(
+            uiState = MarketListUiState(
+                stocks = listOf(
+                    MarketSummaryItem(
+                        symbol = "AAPL",
+                        shortName = "Apple Inc.",
+                        regularMarketPrice = RegularMarketValue(150.50, "150.50"),
+                        regularMarketChange = RegularMarketValue(2.50, "+2.50"),
+                        regularMarketChangePercent = RegularMarketValue(1.69, "+1.69%"),
+                        regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
+                        fullExchangeName = "NasdaqGS",
+                        exchangeTimezoneName = "America/New_York",
+                        exchange = "NMS"
+                    )
+                ),
+                isLoading = true,
+                searchQuery = ""
+            ),
+            onStockClick = {}
+        )
+    }
+}*/
