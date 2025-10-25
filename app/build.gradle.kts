@@ -33,6 +33,12 @@ android {
         buildConfigField("String", "RAPIDAPI_HOST", "\"${localProperties.getProperty("RAPIDAPI_HOST")}\"")
     }
 
+    lint {
+        abortOnError = true
+        checkReleaseBuilds = true
+        htmlOutput = file("${buildDir}/reports/lint/lint-report.html")
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
