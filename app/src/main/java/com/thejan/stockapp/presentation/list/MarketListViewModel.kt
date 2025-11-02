@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MarketListViewModel @Inject constructor(
     private val getMarketSummaryUseCase: GetMarketSummaryUseCase,
-    private val enableAutoRefresh: Boolean = true
+    private val enableAutoRefresh: Boolean = true,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MarketListUiState(isLoading = true))
@@ -93,24 +93,24 @@ class MarketListViewModel @Inject constructor(
             val filteredList = filterStocks(currentState.allStocks, query)
             currentState.copy(
                 searchQuery = query,
-                stocks = filteredList
+                stocks = filteredList,
             )
         }
     }
 
     private fun filterStocks(
         stocks: List<MarketSummaryItem>,
-        query: String
+        query: String,
     ): List<MarketSummaryItem> {
         return if (query.isBlank()) {
             stocks
         } else {
             stocks.filter { stock ->
-                stock.shortName.contains(query, ignoreCase = true)
-                        || stock.symbol.contains(
-                    query,
-                    ignoreCase = true
-                )
+                stock.shortName.contains(query, ignoreCase = true) ||
+                    stock.symbol.contains(
+                        query,
+                        ignoreCase = true,
+                    )
             }
         }
     }

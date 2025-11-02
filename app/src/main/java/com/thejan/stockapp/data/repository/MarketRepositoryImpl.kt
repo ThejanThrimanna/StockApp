@@ -7,7 +7,7 @@ import com.thejan.stockapp.domain.repository.MarketRepository
 import javax.inject.Inject
 
 class MarketRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
 ) : MarketRepository {
 
     override suspend fun getMarketSummary(): MarketSummaryResponse {

@@ -13,5 +13,5 @@ data class MarketSummaryItem(
     val regularMarketPreviousClose: RegularMarketValue?,
     val fullExchangeName: String,
     val exchangeTimezoneName: String,
-    val exchange: String
+    val exchange: String,
 ) : Parcelable

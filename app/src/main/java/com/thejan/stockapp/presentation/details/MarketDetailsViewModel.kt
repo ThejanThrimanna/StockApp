@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MarketDetailsViewModel @Inject constructor(
-    private val getProfileSummaryUseCase: GetProfileSummaryUseCase
+    private val getProfileSummaryUseCase: GetProfileSummaryUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MarketDetailsUiState())
@@ -43,29 +43,29 @@ class MarketDetailsViewModel @Inject constructor(
                         _uiState.value = _uiState.value.copy(
                             isLoading = false,
                             stock = profile,
-                            userMessage = null
+                            userMessage = null,
                         )
                     } else {
                         _uiState.value = _uiState.value.copy(
                             isLoading = false,
                             stock = null,
-                            userMessage = "No profile data found"
+                            userMessage = "No profile data found",
                         )
                         _uiEvent.emit(MarketDetailsUiEvent.ShowToast("No profile data found"))
                     }
                 }.onFailure { e ->
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
-                        userMessage = e.localizedMessage ?: "Failed to load details"
+                        userMessage = e.localizedMessage ?: "Failed to load details",
                     )
                     _uiEvent.emit(
-                        MarketDetailsUiEvent.ShowToast("Error: ${e.localizedMessage ?: "Unknown error"}")
+                        MarketDetailsUiEvent.ShowToast("Error: ${e.localizedMessage ?: "Unknown error"}"),
                     )
                 }
             } catch (e: Exception) {
                 _uiState.value = uiState.value.copy(
                     isLoading = false,
-                    userMessage = e.localizedMessage ?: "Failed to load details"
+                    userMessage = e.localizedMessage ?: "Failed to load details",
                 )
                 _uiEvent.emit(MarketDetailsUiEvent.ShowToast("Error: ${e.localizedMessage}"))
             }

@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class RegularMarketValue(
     val raw: Double,
-    val fmt: String
+    val fmt: String,
 ) : Parcelable

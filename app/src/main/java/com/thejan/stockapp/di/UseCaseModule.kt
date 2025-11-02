@@ -15,7 +15,7 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideGetMarketSummaryUseCase(
-        repository: MarketRepository
+        repository: MarketRepository,
     ): GetMarketSummaryUseCase {
         return GetMarketSummaryUseCase(repository)
     }

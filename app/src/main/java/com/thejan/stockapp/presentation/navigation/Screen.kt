@@ -14,7 +14,7 @@ sealed class Screen(val route: String) {
             navArgument(ARG_SYMBOL) {
                 type = NavType.StringType
                 nullable = false
-            }
+            },
         )
 
         fun createRoute(symbol: String): String {

@@ -29,7 +29,6 @@ import com.thejan.stockapp.presentation.list.MarketListContent
 import com.thejan.stockapp.presentation.list.MarketListItem
 import com.thejan.stockapp.presentation.list.MarketListUiState
 
-
 @Preview(showBackground = true)
 @Composable
 fun MarketListItemPreview() {
@@ -44,9 +43,9 @@ fun MarketListItemPreview() {
                 regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
                 fullExchangeName = "NasdaqGS",
                 exchangeTimezoneName = "America/New_York",
-                exchange = "NMS"
+                exchange = "NMS",
             ),
-            onClick = {}
+            onClick = {},
         )
     }
 }
@@ -54,12 +53,12 @@ fun MarketListItemPreview() {
 @Preview(showBackground = true)
 @Composable
 fun MarketListItemParameterizedPreview(
-    @PreviewParameter(MarketSummaryItemProvider::class) stock: MarketSummaryItem
+    @PreviewParameter(MarketSummaryItemProvider::class) stock: MarketSummaryItem,
 ) {
     MaterialTheme {
         MarketListItem(
             stock = stock,
-            onClick = {}
+            onClick = {},
         )
     }
 }
@@ -67,12 +66,12 @@ fun MarketListItemParameterizedPreview(
 @Preview(showBackground = true)
 @Composable
 fun MarketListContentParameterizedPreview(
-    @PreviewParameter(MarketListUiStateProvider::class) uiState: MarketListUiState
+    @PreviewParameter(MarketListUiStateProvider::class) uiState: MarketListUiState,
 ) {
     MaterialTheme {
         MarketListContent(
             uiState = uiState,
-            onStockClick = {}
+            onStockClick = {},
         )
     }
 }
@@ -85,9 +84,9 @@ fun MarketListContentPreview_Empty() {
             uiState = MarketListUiState(
                 stocks = emptyList(),
                 isLoading = false,
-                searchQuery = ""
+                searchQuery = "",
             ),
-            onStockClick = {}
+            onStockClick = {},
         )
     }
 }
@@ -96,7 +95,7 @@ fun MarketListContentPreview_Empty() {
 @Composable
 fun MarketListScreenPreviewContent(
     uiState: MarketListUiState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
@@ -107,17 +106,17 @@ fun MarketListScreenPreviewContent(
                     if (isRefreshing) {
                         CircularProgressIndicator(
                             modifier = modifier.size(24.dp),
-                            strokeWidth = 2.dp
+                            strokeWidth = 2.dp,
                         )
                     } else {
                         IconButton(onClick = { }) {
                             Icon(
                                 Icons.Default.Refresh,
-                                "Refresh"
+                                "Refresh",
                             )
                         }
                     }
-                }
+                },
             )
         },
         content = { innerPadding ->
@@ -125,23 +124,23 @@ fun MarketListScreenPreviewContent(
                 modifier = modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(14.dp)
+                    .padding(14.dp),
             ) {
                 OutlinedTextField(
                     value = uiState.searchQuery,
                     onValueChange = { },
                     label = { Text("Search stocks...") },
-                    modifier = modifier.fillMaxWidth()
+                    modifier = modifier.fillMaxWidth(),
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
 
                 MarketListContent(
                     uiState = uiState,
-                    onStockClick = { }
+                    onStockClick = { },
                 )
             }
-        }
+        },
     )
 }
 
@@ -153,8 +152,8 @@ fun MarketListScreenPreview_Loading() {
             uiState = MarketListUiState(
                 stocks = emptyList(),
                 isLoading = true,
-                searchQuery = ""
-            )
+                searchQuery = "",
+            ),
         )
     }
 }
@@ -167,9 +166,8 @@ fun MarketListScreenPreview_Empty() {
             uiState = MarketListUiState(
                 stocks = emptyList(),
                 isLoading = false,
-                searchQuery = ""
-            )
+                searchQuery = "",
+            ),
         )
     }
 }
-

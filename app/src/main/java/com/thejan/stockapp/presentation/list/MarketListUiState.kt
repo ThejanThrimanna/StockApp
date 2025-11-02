@@ -7,5 +7,5 @@ data class MarketListUiState(
     val allStocks: List<MarketSummaryItem> = emptyList(),
     val searchQuery: String = "",
     val isLoading: Boolean = true,
-    val userMessage: String? = null
+    val userMessage: String? = null,
 )

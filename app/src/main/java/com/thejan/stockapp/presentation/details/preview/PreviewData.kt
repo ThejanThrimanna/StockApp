@@ -24,7 +24,7 @@ class SummaryProfileProvider : PreviewParameterProvider<SummaryProfile> {
                 longBusinessSummary = "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.",
                 description = "Apple Inc. is a multinational technology company.",
                 fullTimeEmployees = 164000,
-                irWebsite = "https://investor.apple.com"
+                irWebsite = "https://investor.apple.com",
             ),
             SummaryProfile(
                 address1 = "1600 Amphitheatre Parkway",
@@ -43,8 +43,8 @@ class SummaryProfileProvider : PreviewParameterProvider<SummaryProfile> {
                 longBusinessSummary = "Alphabet Inc. provides online advertising services, cloud services, software and hardware products, and other services worldwide.",
                 description = "Alphabet Inc. is a multinational technology conglomerate.",
                 fullTimeEmployees = 156500,
-                irWebsite = "https://abc.xyz/investor"
-            )
+                irWebsite = "https://abc.xyz/investor",
+            ),
         )
 }
 
@@ -54,17 +54,17 @@ class MarketDetailsUiStateProvider : PreviewParameterProvider<MarketDetailsUiSta
             MarketDetailsUiState(
                 stock = SummaryProfileProvider().values.first(),
                 isLoading = false,
-                userMessage = null
+                userMessage = null,
             ),
             MarketDetailsUiState(
                 stock = null,
                 isLoading = true,
-                userMessage = null
+                userMessage = null,
             ),
             MarketDetailsUiState(
                 stock = null,
                 isLoading = false,
-                userMessage = "Failed to load stock details"
-            )
+                userMessage = "Failed to load stock details",
+            ),
         )
 }

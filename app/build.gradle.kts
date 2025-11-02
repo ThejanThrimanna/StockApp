@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.spotless)
     id("kotlin-parcelize")
 }
 
@@ -29,14 +30,22 @@ android {
             localProperties.load(FileInputStream(localPropertiesFile))
         }
 
-        buildConfigField("String", "RAPIDAPI_KEY", "\"${localProperties.getProperty("RAPIDAPI_KEY")}\"")
-        buildConfigField("String", "RAPIDAPI_HOST", "\"${localProperties.getProperty("RAPIDAPI_HOST")}\"")
+        buildConfigField(
+            "String",
+            "RAPIDAPI_KEY",
+            "\"${localProperties.getProperty("RAPIDAPI_KEY")}\"",
+        )
+        buildConfigField(
+            "String",
+            "RAPIDAPI_HOST",
+            "\"${localProperties.getProperty("RAPIDAPI_HOST")}\"",
+        )
     }
 
     lint {
         abortOnError = true
         checkReleaseBuilds = true
-        htmlOutput = file("${buildDir}/reports/lint/lint-report.html")
+        htmlOutput = layout.buildDirectory.file("reports/lint/lint-report.html").get().asFile
     }
 
     buildTypes {
@@ -44,7 +53,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -78,6 +87,30 @@ android {
                 useVersion("1.13.0")
                 because("Hilt requires javapoet 1.13.0, newer versions removed canonicalName()")
             }
+        }
+    }
+
+    spotless {
+        kotlin {
+            target("**/*.kt")
+            ktlint("0.50.0").apply {
+                userData(
+                    mapOf(
+                        "disabled_rules" to "function-naming,filename",
+                    ),
+                )
+            }
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+
+        kotlinGradle {
+            target("**/*.gradle.kts")
+            ktlint("0.50.0")
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
         }
     }
 }

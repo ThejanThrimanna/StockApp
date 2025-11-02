@@ -34,7 +34,7 @@ fun InfoItemPreview() {
     MaterialTheme {
         InfoItem(
             title = "Address",
-            value = "One Apple Park Way, Cupertino, CA 95014, United States"
+            value = "One Apple Park Way, Cupertino, CA 95014, United States",
         )
     }
 }
@@ -46,7 +46,7 @@ fun InfoItemPreview_MultipleLine() {
         InfoItem(
             title = "Address",
             value = "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.",
-            multiline = true
+            multiline = true,
         )
     }
 }
@@ -56,7 +56,7 @@ fun InfoItemPreview_MultipleLine() {
 fun SummaryProfileSectionPreview() {
     MaterialTheme {
         SummaryProfileSection(
-            profile = SummaryProfileProvider().values.first()
+            profile = SummaryProfileProvider().values.first(),
         )
     }
 }
@@ -66,7 +66,7 @@ fun SummaryProfileSectionPreview() {
 fun MarketDetailScreenPreview_Loaded() {
     MaterialTheme {
         MarketDetailScreenPreviewContent(
-            uiState = MarketDetailsUiStateProvider().values.first()
+            uiState = MarketDetailsUiStateProvider().values.first(),
         )
     }
 }
@@ -79,8 +79,8 @@ fun MarketDetailScreenPreview_Loading() {
             uiState = MarketDetailsUiState(
                 stock = null,
                 isLoading = true,
-                userMessage = null
-            )
+                userMessage = null,
+            ),
         )
     }
 }
@@ -93,8 +93,8 @@ fun MarketDetailScreenPreview_Error() {
             uiState = MarketDetailsUiState(
                 stock = null,
                 isLoading = false,
-                userMessage = "Failed to load stock details"
-            )
+                userMessage = "Failed to load stock details",
+            ),
         )
     }
 }
@@ -102,7 +102,7 @@ fun MarketDetailScreenPreview_Error() {
 @Preview(showBackground = true)
 @Composable
 fun MarketDetailScreenParameterizedPreview(
-    @PreviewParameter(MarketDetailsUiStateProvider::class) uiState: MarketDetailsUiState
+    @PreviewParameter(MarketDetailsUiStateProvider::class) uiState: MarketDetailsUiState,
 ) {
     MaterialTheme {
         MarketDetailScreenPreviewContent(uiState = uiState)
@@ -113,7 +113,7 @@ fun MarketDetailScreenParameterizedPreview(
 @Composable
 fun MarketDetailScreenPreviewContent(
     uiState: MarketDetailsUiState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
@@ -123,7 +123,7 @@ fun MarketDetailScreenPreviewContent(
                     IconButton(onClick = { }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "Back",
                         )
                     }
                 },
@@ -132,10 +132,10 @@ fun MarketDetailScreenPreviewContent(
                     if (isRefreshing) {
                         CircularProgressIndicator(
                             modifier = modifier.size(24.dp),
-                            strokeWidth = 2.dp
+                            strokeWidth = 2.dp,
                         )
                     }
-                }
+                },
             )
         },
     ) { innerPadding ->
@@ -143,13 +143,13 @@ fun MarketDetailScreenPreviewContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             when {
                 uiState.isLoading && uiState.stock == null -> {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         CircularProgressIndicator()
                         Spacer(Modifier.height(8.dp))
@@ -161,7 +161,7 @@ fun MarketDetailScreenPreviewContent(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(14.dp)
+                            .padding(14.dp),
                     ) {
                         SummaryProfileSection(uiState.stock)
                     }
@@ -170,12 +170,12 @@ fun MarketDetailScreenPreviewContent(
                 uiState.userMessage != null -> {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         Text(
                             text = uiState.userMessage,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.error
+                            color = MaterialTheme.colorScheme.error,
                         )
                     }
                 }

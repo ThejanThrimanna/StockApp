@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MarketSummaryResponse(
-    val marketSummaryAndSparkResponse: MarketSummaryAndSparkResponse
+    val marketSummaryAndSparkResponse: MarketSummaryAndSparkResponse,
 ) : Parcelable

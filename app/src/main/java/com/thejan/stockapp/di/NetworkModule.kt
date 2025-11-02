@@ -1,5 +1,6 @@
 package com.thejan.stockapp.di
 
+import com.thejan.stockapp.BuildConfig
 import com.thejan.stockapp.data.network.ApiConstants
 import com.thejan.stockapp.data.network.ApiService
 import dagger.Module
@@ -12,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-import com.thejan.stockapp.BuildConfig
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,7 +38,7 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         headerInterceptor: Interceptor,
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(headerInterceptor)

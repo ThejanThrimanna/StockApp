@@ -9,11 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.thejan.stockapp.BuildConfig
-import com.thejan.stockapp.presentation.list.MarketListScreen
-import com.thejan.stockapp.presentation.list.MarketListViewModel
 import com.thejan.stockapp.presentation.navigation.AppNavGraph
 import com.thejan.stockapp.presentation.ui.theme.StockAppTheme
 import dagger.hilt.android.AndroidEntryPoint

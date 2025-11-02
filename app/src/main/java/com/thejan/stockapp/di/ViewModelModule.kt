@@ -15,14 +15,14 @@ object ViewModelModule {
 
     @Provides
     fun provideMarketListViewModel(
-        getMarketSummaryUseCase: GetMarketSummaryUseCase
+        getMarketSummaryUseCase: GetMarketSummaryUseCase,
     ): MarketListViewModel {
         return MarketListViewModel(getMarketSummaryUseCase)
     }
 
     @Provides
     fun provideMarketDetailsViewModel(
-        getProfileSummaryUseCase: GetProfileSummaryUseCase
+        getProfileSummaryUseCase: GetProfileSummaryUseCase,
     ): MarketDetailsViewModel {
         return MarketDetailsViewModel(getProfileSummaryUseCase)
     }

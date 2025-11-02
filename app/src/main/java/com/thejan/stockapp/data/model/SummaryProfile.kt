@@ -21,6 +21,5 @@ data class SummaryProfile(
     val longBusinessSummary: String?,
     val description: String?,
     val fullTimeEmployees: Int?,
-    val irWebsite: String?
+    val irWebsite: String?,
 ) : Parcelable
-

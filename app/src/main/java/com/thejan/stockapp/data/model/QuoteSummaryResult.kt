@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class QuoteSummaryResult(
-    val summaryProfile: SummaryProfile?
+    val summaryProfile: SummaryProfile?,
 ) : Parcelable

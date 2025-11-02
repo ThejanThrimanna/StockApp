@@ -6,11 +6,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class QuotesSummary(
     val result: List<QuoteSummaryResult>,
-    val error: QuoteSummaryError?
+    val error: QuoteSummaryError?,
 ) : Parcelable
 
 @Parcelize
 data class QuoteSummaryError(
     val code: String? = null,
-    val description: String? = null
+    val description: String? = null,
 ) : Parcelable

@@ -17,7 +17,7 @@ class MarketSummaryItemProvider : PreviewParameterProvider<MarketSummaryItem> {
                 regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
                 fullExchangeName = "NasdaqGS",
                 exchangeTimezoneName = "America/New_York",
-                exchange = "NMS"
+                exchange = "NMS",
             ),
             MarketSummaryItem(
                 symbol = "TSLA",
@@ -28,8 +28,8 @@ class MarketSummaryItemProvider : PreviewParameterProvider<MarketSummaryItem> {
                 regularMarketPreviousClose = RegularMarketValue(866.00, "866.00"),
                 fullExchangeName = "NasdaqGS",
                 exchangeTimezoneName = "America/New_York",
-                exchange = "NMS"
-            )
+                exchange = "NMS",
+            ),
         )
 }
 
@@ -47,7 +47,7 @@ class MarketListUiStateProvider : PreviewParameterProvider<MarketListUiState> {
                         regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
                         fullExchangeName = "NasdaqGS",
                         exchangeTimezoneName = "America/New_York",
-                        exchange = "NMS"
+                        exchange = "NMS",
                     ),
                     MarketSummaryItem(
                         symbol = "TSLA",
@@ -58,21 +58,21 @@ class MarketListUiStateProvider : PreviewParameterProvider<MarketListUiState> {
                         regularMarketPreviousClose = RegularMarketValue(866.00, "866.00"),
                         fullExchangeName = "NasdaqGS",
                         exchangeTimezoneName = "America/New_York",
-                        exchange = "NMS"
-                    )
+                        exchange = "NMS",
+                    ),
                 ),
                 isLoading = false,
-                searchQuery = ""
+                searchQuery = "",
             ),
             MarketListUiState(
                 stocks = emptyList(),
                 isLoading = true,
-                searchQuery = ""
+                searchQuery = "",
             ),
             MarketListUiState(
                 stocks = emptyList(),
                 isLoading = false,
-                searchQuery = "test"
+                searchQuery = "test",
             ),
             MarketListUiState(
                 stocks = listOf(
@@ -85,11 +85,11 @@ class MarketListUiStateProvider : PreviewParameterProvider<MarketListUiState> {
                         regularMarketPreviousClose = RegularMarketValue(148.00, "148.00"),
                         fullExchangeName = "NasdaqGS",
                         exchangeTimezoneName = "America/New_York",
-                        exchange = "NMS"
-                    )
+                        exchange = "NMS",
+                    ),
                 ),
                 isLoading = true,
-                searchQuery = ""
-            )
+                searchQuery = "",
+            ),
         )
 }

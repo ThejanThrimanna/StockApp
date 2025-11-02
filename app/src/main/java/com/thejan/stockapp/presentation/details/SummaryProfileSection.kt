@@ -29,12 +29,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.thejan.stockapp.data.model.SummaryProfile
 import com.thejan.stockapp.R
+import com.thejan.stockapp.data.model.SummaryProfile
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Suppress("FunctionName")
 @Composable
-fun MarketDetailScreen(
+fun SummaryProfileSection(
     viewModel: MarketDetailsViewModel,
     navController: NavHostController,
     modifier: Modifier = Modifier,
@@ -54,7 +55,7 @@ fun MarketDetailScreen(
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.market_detail_button_back_description)
+                            contentDescription = stringResource(R.string.market_detail_button_back_description),
                         )
                     }
                 },
@@ -63,10 +64,10 @@ fun MarketDetailScreen(
                     if (isRefreshing) {
                         CircularProgressIndicator(
                             modifier = modifier.size(24.dp),
-                            strokeWidth = 2.dp
+                            strokeWidth = 2.dp,
                         )
                     }
-                }
+                },
             )
         },
     ) { innerPadding ->
@@ -74,13 +75,13 @@ fun MarketDetailScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             when {
                 uiState.isLoading && uiState.stock == null -> {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         CircularProgressIndicator()
                         Spacer(Modifier.height(8.dp))
@@ -92,7 +93,7 @@ fun MarketDetailScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(14.dp)
+                            .padding(14.dp),
                     ) {
                         SummaryProfileSection(uiState.stock)
                     }
@@ -101,12 +102,12 @@ fun MarketDetailScreen(
                 uiState.userMessage != null -> {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         Text(
                             text = uiState.userMessage,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.error
+                            color = MaterialTheme.colorScheme.error,
                         )
                     }
                 }
@@ -115,16 +116,18 @@ fun MarketDetailScreen(
     }
 }
 
+@Suppress("FunctionName")
 @Composable
 fun SummaryProfileSection(profile: SummaryProfile) {
     Column(modifier = Modifier.fillMaxWidth()) {
         InfoItem(
-            stringResource(R.string.market_detail_label_address), listOfNotNull(
+            stringResource(R.string.market_detail_label_address),
+            listOfNotNull(
                 profile.address1,
                 profile.address2,
                 profile.city,
-                profile.country
-            ).joinToString(", ")
+                profile.country,
+            ).joinToString(", "),
         )
 
         InfoItem(stringResource(R.string.market_detail_label_phone), profile.phone)
@@ -133,16 +136,17 @@ fun SummaryProfileSection(profile: SummaryProfile) {
         InfoItem(stringResource(R.string.market_detail_label_industry), profile.industryDisp)
         InfoItem(
             stringResource(R.string.market_detail_label_employees),
-            profile.fullTimeEmployees?.toString()
+            profile.fullTimeEmployees?.toString(),
         )
         InfoItem(
             stringResource(R.string.market_detail_label_description),
             profile.longBusinessSummary ?: profile.description,
-            multiline = true
+            multiline = true,
         )
     }
 }
 
+@Suppress("FunctionName")
 @Composable
 fun InfoItem(title: String, value: String?, multiline: Boolean = false) {
     if (value.isNullOrBlank()) return
@@ -150,12 +154,12 @@ fun InfoItem(title: String, value: String?, multiline: Boolean = false) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = 8.dp),
     ) {
         Text(
             text = title,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Spacer(modifier = Modifier.height(2.dp))
         Text(
@@ -163,7 +167,7 @@ fun InfoItem(title: String, value: String?, multiline: Boolean = false) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
             maxLines = if (multiline) Int.MAX_VALUE else 2,
-            overflow = if (multiline) TextOverflow.Clip else TextOverflow.Ellipsis
+            overflow = if (multiline) TextOverflow.Clip else TextOverflow.Ellipsis,
         )
         Spacer(modifier = Modifier.height(8.dp))
         HorizontalDivider()

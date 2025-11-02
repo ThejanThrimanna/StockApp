@@ -33,16 +33,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.thejan.stockapp.R
 import com.thejan.stockapp.data.model.MarketSummaryItem
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
-import com.thejan.stockapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MarketListScreen(
     viewModel: MarketListViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -70,17 +70,17 @@ fun MarketListScreen(
                     if (isRefreshing) {
                         CircularProgressIndicator(
                             modifier = modifier.size(24.dp),
-                            strokeWidth = 2.dp
+                            strokeWidth = 2.dp,
                         )
                     } else {
                         IconButton(onClick = { viewModel.onEvent(MarketListEvent.Refresh) }) {
                             Icon(
                                 Icons.Default.Refresh,
-                                stringResource(R.string.market_list_button_refresh_description)
+                                stringResource(R.string.market_list_button_refresh_description),
                             )
                         }
                     }
-                }
+                },
             )
         },
         content = { innerPadding ->
@@ -88,19 +88,19 @@ fun MarketListScreen(
                 modifier = modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(14.dp)
+                    .padding(14.dp),
             ) {
                 OutlinedTextField(
                     value = uiState.searchQuery,
                     onValueChange = { newQuary ->
                         viewModel.onEvent(
                             MarketListEvent.SearchChanged(
-                                newQuary
-                            )
+                                newQuary,
+                            ),
                         )
                     },
                     label = { Text(stringResource(R.string.market_list_search_placeholder)) },
-                    modifier = modifier.fillMaxWidth()
+                    modifier = modifier.fillMaxWidth(),
                 )
 
                 Spacer(modifier.height(14.dp))
@@ -109,17 +109,17 @@ fun MarketListScreen(
                     uiState = uiState,
                     onStockClick = { symbol ->
                         viewModel.onEvent(MarketListEvent.StockClicked(symbol = symbol))
-                    }
+                    },
                 )
             }
-        }
+        },
     )
 }
 
 @Composable
 fun MarketListContent(
     uiState: MarketListUiState,
-    onStockClick: (symbol: String) -> Unit
+    onStockClick: (symbol: String) -> Unit,
 ) {
     when {
         uiState.isLoading && uiState.stocks.isEmpty() -> {
@@ -135,8 +135,11 @@ fun MarketListContent(
         uiState.stocks.isEmpty() -> {
             Box(Modifier.fillMaxSize(), Alignment.Center) {
                 Text(
-                    if (uiState.searchQuery.isNotBlank()) "No matching stocks found"
-                    else stringResource(R.string.market_list_message_empty)
+                    if (uiState.searchQuery.isNotBlank()) {
+                        "No matching stocks found"
+                    } else {
+                        stringResource(R.string.market_list_message_empty)
+                    },
                 )
             }
         }
@@ -148,7 +151,7 @@ fun MarketListContent(
                         stock = stock,
                         onClick = {
                             onStockClick(stock.symbol)
-                        }
+                        },
                     )
                 }
             }
@@ -156,18 +159,17 @@ fun MarketListContent(
     }
 }
 
-
 @Composable
 fun MarketListItem(
     stock: MarketSummaryItem,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
+            .padding(vertical = 4.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
             Text(stock.shortName, style = MaterialTheme.typography.titleMedium)
