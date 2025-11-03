@@ -27,6 +27,24 @@ Kotlin | Jetpack Compose | Coroutines & Flow | MVVM | Hilt (DI) | JUnit + MockK 
 
 Clean Architecture
 
+## 🧩 Git & Branch Workflow
+To maintain a clean and stable codebase, this project follows a protected branch and pull request workflow.
+
+### 🛡️ Branch Protection Rules
+✅ Main branch is protected — direct pushes are not allowed.
+
+✅ All changes must go through a Pull Request (PR).
+
+✅ Required status checks must pass before merging, including:
+
+build (GitHub Actions workflow for CI, tests, and formatting)
+
+✅ Linear history is enforced — no merge commits.
+
+✅ Force pushes and branch deletions are blocked.
+
+✅ Pull requests must be up-to-date with the base branch before merging.
+
 ## 🧹 Code Quality & CI/CD
 This project uses Spotless with Ktlint to maintain consistent code formatting and follow Kotlin best practices.
 
