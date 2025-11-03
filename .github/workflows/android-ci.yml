@@ -40,6 +40,9 @@ jobs:
       - name: Clean
         run: ./gradlew clean
 
+      - name: Check code formatting
+        run: ./gradlew spotlessCheck --no-daemon --stacktrace
+
       - name: Build (assemble & compile)
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 
